@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Scribe (Enhanced)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1><span class="logo-icon">🩺</span> AI Medical Scribe</h1>
+        <p class="subtitle">Record visits, upload audio, or use Dev Mode. Get transcripts & interactive SOAP notes.</p>
+
+        <div class="main-controls card">
+            <h2>Live Session</h2>
+            <div class="record-upload-area">
+                <button id="startButton" type="button" title="Start Recording"><span class="icon">▶️</span>
+                    Start</button>
+                <button id="stopButton" type="button" title="Stop Recording" disabled><span class="icon">⏹️</span>
+                    Stop</button>
+                <div id="recordingIndicator" class="recording-indicator" title="Recording Status"></div>
+                <span id="timerDisplay" class="timer-display">00:00</span>
+                <div class="upload-area">
+                    <label for="audioFileInput" class="file-input-label">Or Upload:</label>
+                    <input type="file" id="audioFileInput" accept="audio/*">
+                    <button id="uploadButton" type="button">Upload File</button>
+                </div>
+            </div>
+            <div class="status-area">
+                <strong>Status:</strong> <span id="recordingStatus">Initializing...</span>
+                <div id="errorDisplay" class="error-message"></div>
+            </div>
+        </div>
+
+
+        <div class="dev-mode-toggle">
+            <button id="toggleDevMode" type="button">Hide Dev Mode</button>
+        </div>
+        <div id="devModeControls" class="dev-controls card">
+            <h2>Developer Mode</h2>
+            <p>Generate SOAP note directly from a local <code>transcript.json</code> file (must be in the server's root
+                directory).</p>
+            <div class="dev-buttons">
+                <button id="generateLocalButton" type="button">Generate from transcript.json</button>
+                <button id="retrySoapButton" type="button">Retry SOAP</button>
+                <button id="resetDevViewButton" type="button">Reset View</button>
+            </div>
+            <div class="status-area-dev">
+                <strong>Dev Status:</strong> <span id="devStatus">Idle</span>
+                <div id="devErrorDisplay" class="error-message"></div>
+            </div>
+        </div>
+
+
+        <div class="results-container card">
+            <h2>Results</h2>
+            <div class="results-columns">
+                <div class="column transcript-column">
+                    <h3>Transcript (Confidence: <span class="low-conf">Low</span> - <span class="high-conf">High</span>)
+                    </h3>
+                    <div id="transcriptOutput" class="output-box transcript-words">
+                        <p class="placeholder">Transcript will appear here...</p>
+                    </div>
+                </div>
+
+                <div class="column output-column">
+                    <div class="soap-header">
+                        <h3>Generated SOAP Note</h3>
+                    </div>
+                    <p class="edit-hint">(Hover mapped sentences for source utterances.)</p>
+                    <div id="soapOutput" class="output-box soap-details">
+                        <p class="placeholder">SOAP note will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            Using AssemblyAI & Groq | Current Time: <span id="currentTime"></span>
+        </footer>
+    </div>
+
+    <div id="mapping-dialog" class="mapping-dialog" style="display: none;"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

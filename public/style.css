@@ -1,0 +1,532 @@
+/* --- General Styles --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #343a40;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1300px;
+    /* Slightly wider */
+    width: 100%;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 2.2em;
+}
+
+h1 .logo-icon {
+    margin-right: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+h2 {
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+h3 {
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.25em;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Main Controls (Recording & Upload) --- */
+.main-controls h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.record-upload-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.record-upload-area button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.record-upload-area button:hover:not(:disabled) {
+    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.record-upload-area button:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.record-upload-area button .icon {
+    font-size: 1.1em;
+}
+
+/* Recording Indicator */
+.recording-indicator {
+    width: 18px;
+    height: 18px;
+    background-color: #6c757d;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.recording-indicator.recording {
+    background-color: #dc3545;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+/* Timer Display */
+.timer-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #343a40;
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 4px;
+    min-width: 60px;
+    /* Ensure space */
+    text-align: center;
+}
+
+/* Upload Area */
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-input-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+#audioFileInput {
+    font-size: 0.9em;
+}
+
+#uploadButton {
+    background-color: #28a745;
+}
+
+/* Green for upload */
+#uploadButton:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+/* --- Status Area --- */
+.status-area {
+    font-size: 1em;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#recordingStatus {
+    font-weight: bold;
+}
+
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    display: none;
+    /* Hidden by default */
+}
+
+/* --- Dev Mode Controls --- */
+.dev-mode-toggle {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggleDevMode {
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#toggleDevMode:hover {
+    background-color: #5a6268;
+}
+
+.dev-controls {
+    background-color: #fffbe6;
+    border-color: #ffeeba;
+}
+
+/* Light yellow background */
+.dev-controls h2 {
+    text-align: center;
+    color: #856404;
+    border-bottom-color: #ffeeba;
+}
+
+.dev-controls p {
+    text-align: center;
+    color: #856404;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+.dev-controls code {
+    background-color: #fff3cd;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.dev-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.dev-controls button {
+    padding: 9px 15px;
+    font-size: 0.95rem;
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffc107;
+    color: #343a40;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.dev-controls button:hover:not(:disabled) {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.dev-controls button:disabled {
+    background-color: #ffeeba;
+    color: #856404;
+    cursor: not-allowed;
+}
+
+#resetDevViewButton {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+    color: white;
+}
+
+#resetDevViewButton:hover:not(:disabled) {
+    background-color: #e66804;
+    border-color: #da6204;
+}
+
+.status-area-dev {
+    text-align: center;
+    font-size: 0.9em;
+    color: #856404;
+}
+
+#devStatus {
+    font-weight: bold;
+}
+
+#devErrorDisplay {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+/* --- Results Area Layout --- */
+.results-container h2 {
+    text-align: center;
+    border: none;
+}
+
+.results-columns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.transcript-column {
+    flex: 1.2;
+    min-width: 45%;
+}
+
+.output-column {
+    flex: 1;
+    min-width: 45%;
+}
+
+.output-box {
+    border: 1px solid #ced4da;
+    background-color: #fdfdff;
+    padding: 15px;
+    border-radius: 4px;
+    min-height: 200px;
+    max-height: 65vh;
+    overflow-y: auto;
+    font-size: 0.9em;
+    line-height: 1.7;
+}
+
+.output-box .placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Transcript Specific */
+.transcript-words {
+    font-family: sans-serif;
+    white-space: normal;
+}
+
+.transcript-words .utterance {
+    margin-bottom: 12px;
+    padding: 8px;
+    border-left: 3px solid #dee2e6;
+    transition: background-color 0.3s ease, border-left-color 0.3s ease;
+}
+
+.transcript-words .utterance .speaker {
+    font-weight: bold;
+    color: #0056b3;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.transcript-words .word-span {
+    display: inline-block;
+    padding: 1px 3px;
+    margin: 0 1px;
+    border-radius: 3px;
+    color: #212529;
+    transition: background-color 0.3s ease;
+}
+
+.low-conf {
+    background-color: #fdd;
+    color: #c5372a;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+
+.high-conf {
+    background-color: #dff;
+    color: #2c8a43;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+
+.transcript-words .utterance.highlighted {
+    background-color: #e8f0fe;
+    border-left-color: #007bff;
+}
+
+/* SOAP Note Specific */
+.soap-details {
+    font-family: sans-serif;
+    font-size: 0.95em;
+    white-space: normal;
+    word-wrap: normal;
+}
+
+.soap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.edit-hint {
+    font-size: 0.8em;
+    color: #6c757d;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-top: -5px;
+}
+
+#soapOutput h3 {
+    font-size: 1.1em;
+    color: #0056b3;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+}
+
+#soapOutput h3:first-child {
+    margin-top: 0;
+}
+
+#soapOutput .soap-sentence {
+    margin-bottom: 8px;
+    padding-left: 10px;
+    line-height: 1.5;
+}
+
+#soapOutput .soap-sentence.has-mapping {
+    cursor: help;
+    border-bottom: 1px dotted #007bff;
+    transition: background-color 0.15s ease;
+}
+
+#soapOutput .soap-sentence.has-mapping:hover {
+    background-color: #e8f0fe;
+}
+
+/* Mapping Dialog Box */
+.mapping-dialog {
+    position: absolute;
+    display: none;
+    background-color: #212529;
+    color: #f8f9fa;
+    border: 1px solid #495057;
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    font-size: 0.85em;
+    z-index: 1000;
+    pointer-events: none;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.mapping-dialog strong {
+    color: #adb5bd;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .results-columns {
+        flex-direction: column;
+    }
+
+    .transcript-column,
+    .output-column {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .record-upload-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .record-upload-area button,
+    .upload-area {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #audioFileInput {
+        flex-grow: 1;
+    }
+
+    .output-box {
+        max-height: 50vh;
+    }
+
+    .dev-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
